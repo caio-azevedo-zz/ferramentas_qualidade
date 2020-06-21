@@ -12,7 +12,7 @@ da Qualidade e Produtividade.
 
 **Orientador**: Msc. Caio Oliveira Azevedo
 
-** Co-orientador**: Dr. Fábio Júnior Clemente Gama
+**Coorientador**: Dr. Fábio Júnior Clemente Gama
 
 Linguagens utilizadas: R 
 
