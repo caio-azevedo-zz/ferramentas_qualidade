@@ -4,6 +4,12 @@ Repositório dos scripts utilizados no trabalho de conclusão de curso apresenta
 ao Instituto de Educação Superior da Paraíba como requisito parcial para a obtenção do título de Especialista de Gestão 
 da Qualidade e Produtividade.
 
+## Orientações para replicação dos scripts em R
+
+O arquivo "dados_csv.R" contido na pasta "Código em R" transforma a base de dados disponibilizada pelo DATASUS em formato ".dbc" para o formato ".csv". As bases de dados em formato ".csv" e em ".dbc" se encontram na pasta "Data".
+
+Para replicação dos resultados sem a necessidade do download da base de dados, basta utilizar o arquivo "ferramentas_qualidade.R" disponível na pasta "Còdigo em R".
+
 # Informações do TCC
 
 ## UTILIZAÇÃO DE FERRAMENTAS DA QUALIDADE NA ATENÇÃO PRÉ-NATAL: uma abordagem a partir do Sinasc para o Estado da Paraíba
