@@ -8,7 +8,6 @@ rm(list=ls())
 
 # Desbloquear para instalar pacotes a serem utilizados
 
-#install.packages("read.dbc")
 #install.packages("dplyr")
 #install.packages("xtable")
 #install.packages("ggplot2")
@@ -17,7 +16,7 @@ rm(list=ls())
 
 # Carregando pacotes a serem utilizados
 
-library(read.dbc)
+
 library(dplyr)
 library(xtable)
 library(ggplot2)
@@ -39,9 +38,13 @@ cleanup = theme(panel.grid.major = element_blank(),
 
 # Carregamento e configuração dos dados----
 
-base<-read.dbc("C:/Users/Caio Azevedo/Documents/Documentos Caio/Github/ferramentas_qualidade/Data/DNPB2017.dbc")
+# Exportando os dados disponíveis no GitHub
 
-base<-select(base,NUMERODN,IDADEMAE, ESTCIVMAE, ESCMAE, GESTACAO, 
+site <- "https://raw.githubusercontent.com/caio-azevedo/ferramentas_qualidade/master/Data/base.csv"
+
+dados<- read.table(site, header=T, sep=";")
+
+base<-select(dados,NUMERODN,IDADEMAE, ESTCIVMAE, ESCMAE, GESTACAO, 
               CONSULTAS, 
               PESO,DTNASC)
 base<-base %>% 
@@ -90,8 +93,10 @@ freq.peso<-dados %>%
 ggplot(dados, aes(PESO))+geom_histogram(colour="black", fill="grey")+ 
   xlab("Peso (em gramas)") + ylab("Frequência") + cleanup 
 
-dev.copy(jpeg,"fig1.jpeg")
-dev.off()
+#Desbloquear para gerar figura
+
+#dev.copy(jpeg,"fig1.jpeg")
+#dev.off()
 
 # Tabela 3: Distribuição de frequências para a duração da gestação----
 
@@ -338,45 +343,80 @@ ggplot(data=graf, aes(x=Mês, y=Proporção*100)) + geom_point(size=5)+
   ylab("Prevalência BPN")+  
   cleanup
 
-dev.copy(jpeg,"fig3.jpeg")
-dev.off()
+#Desbloquear para gerar figura
+
+#dev.copy(jpeg,"fig3.jpeg")
+#dev.off()
 
 rm(graf)
 
 
-#Figura 4: Histograma dos pesos por número de consultas
+#Figura 4: Histograma dos pesos por número de consultas ----
 
 consultas1<-dados %>% 
   filter(CONSULTAS==1)
 
 ggplot(consultas1, aes(PESO))+geom_histogram(colour="black", fill="grey")+ 
   xlab("Peso (em gramas)") + ylab("Frequência") + cleanup 
-dev.copy(jpeg,"fig4(a).jpeg")
-dev.off()
+
+#Desbloquear para gerar figura
+
+#dev.copy(jpeg,"fig4(a).jpeg")
+#dev.off()
 
 consultas2<-dados %>% 
   filter(CONSULTAS==2)
 
 ggplot(consultas2, aes(PESO))+geom_histogram(colour="black", fill="grey")+ 
   xlab("Peso (em gramas)") + ylab("Frequência") + cleanup 
-dev.copy(jpeg,"fig4(b).jpeg")
-dev.off()
+
+#Desbloquear para gerar figura
+
+#dev.copy(jpeg,"fig4(b).jpeg")
+#dev.off()
 
 consultas3<-dados %>% 
   filter(CONSULTAS==3)
 
 ggplot(consultas3, aes(PESO))+geom_histogram(colour="black", fill="grey")+ 
   xlab("Peso (em gramas)") + ylab("Frequência") + cleanup 
-dev.copy(jpeg,"fig4(c).jpeg")
-dev.off()
+
+#Desbloquear para gerar figura
+
+#dev.copy(jpeg,"fig4(c).jpeg")
+#dev.off()
 
 consultas4<-dados %>% 
   filter(CONSULTAS==4)
 
 ggplot(consultas4, aes(PESO))+geom_histogram(colour="black", fill="grey")+ 
   xlab("Peso (em gramas)") + ylab("Frequência") + cleanup 
-dev.copy(jpeg,"fig4(d).jpeg")
-dev.off()
+
+#Desbloquear para gerar figura
+
+#dev.copy(jpeg,"fig4(d).jpeg")
+#dev.off()
+
+# Gerar as 4 Figuras empilhadas
+
+par(mfrow=c(2,2))
+plot(density(consultas1$PESO, kernel = c("gaussian")),main="(a) Nenhuma Consulta",
+     xlab="Peso (em gramas)", ylab="Frequência")
+plot(density(consultas2$PESO, kernel = c("gaussian")),main="(b) 1 a 3 consultas",
+     xlab="Peso (em gramas)", ylab="Frequência")
+plot(density(consultas3$PESO, kernel = c("gaussian")),main="(c) 4 a 6 consultas",
+     xlab="Peso (em gramas)", ylab="Frequência")
+plot(density(consultas4$PESO, kernel = c("gaussian")),main="(d) Mais que 7 consultas",
+     xlab="Peso (em gramas)", ylab="Frequência")
+
+
+
+#Desbloquear para gerar figura
+
+#dev.copy(jpeg,"fig4.jpeg")
+#dev.off()
+
+graphics.off()
 
 rm(consultas1, consultas2, consultas3, consultas4)
 

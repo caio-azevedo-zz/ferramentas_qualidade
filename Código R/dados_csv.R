@@ -4,7 +4,7 @@ rm(list=ls())
 
 # Desbloquear para definir diretório de trabalho
 
-#setwd("C:/Users/Caio Azevedo/Documents/Documentos Caio/Github/ferramentas_qualidade")
+setwd("C:/Users/Caio Azevedo/Documents/Documentos Caio/Github/ferramentas_qualidade")
 
 # Desbloquear para instalar pacotes a serem utilizados
 
@@ -20,4 +20,4 @@ library(read.dbc)
 base<-read.dbc("C:/Users/Caio Azevedo/Documents/Documentos Caio/Github/ferramentas_qualidade/Data/DNPB2017.dbc")
 
 #Exportando----
-write.table(base,file='Data/base.csv',sep=',',na="",quote=TRUE, row.names=FALSE)
+write.table(base,file='Data/base.csv',sep=';')
